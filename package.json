@@ -6,7 +6,7 @@
   "publisher": "langshift",
   "repository": {
     "type": "git",
-    "url": "https://github.com/langshift/langshift-vscode.git"
+    "url": "https://github.com/abneeshsingh21/LangShift-Extension-.git"
   },
   "engines": {
     "vscode": "^1.85.0"

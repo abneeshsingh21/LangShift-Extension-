@@ -8,14 +8,14 @@
 Six AI providers. Smart caching. PII scrubbing. Offline support. Enterprise-ready.
 
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/langshift.langshift?label=VS%20Code%20Marketplace&logo=visual-studio-code&color=0078d7)](https://marketplace.visualstudio.com/items?itemName=langshift.langshift)
-[![Version](https://img.shields.io/badge/version-2.0.0-blueviolet?logo=semanticrelease)](https://github.com/langshift/langshift-vscode/releases/tag/v2.0.0)
+[![Version](https://img.shields.io/badge/version-2.0.0-blueviolet?logo=semanticrelease)](https://github.com/abneeshsingh21/LangShift-Extension-/releases/tag/v2.0.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/langshift.langshift?color=blue&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=langshift.langshift)
-[![CI](https://github.com/langshift/langshift-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/langshift/langshift-vscode/actions)
+[![CI](https://github.com/abneeshsingh21/LangShift-Extension-/actions/workflows/ci.yml/badge.svg)](https://github.com/abneeshsingh21/LangShift-Extension-/actions)
 
 <br />
 
-[Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=langshift.langshift) · [Report Bug](https://github.com/langshift/langshift-vscode/issues) · [Request Feature](https://github.com/langshift/langshift-vscode/issues)
+[Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=langshift.langshift) · [Report Bug](https://github.com/abneeshsingh21/LangShift-Extension-/issues) · [Request Feature](https://github.com/abneeshsingh21/LangShift-Extension-/issues)
 
 <br />
 
@@ -609,7 +609,7 @@ Contributions are welcome! Here's how to get started:
 
 ```bash
 # Clone the repo
-git clone https://github.com/langshift/langshift-vscode.git
+git clone https://github.com/abneeshsingh21/LangShift-Extension-.git
 cd langshift-vscode
 
 # Install dependencies
@@ -646,7 +646,7 @@ npm run package    # Package as .vsix for distribution
 
 ## 📜 License
 
-MIT © [LangShift Contributors](https://github.com/langshift/langshift-vscode/graphs/contributors)
+MIT © [LangShift Contributors](https://github.com/abneeshsingh21/LangShift-Extension-/graphs/contributors)
 
 ---
 

@@ -33,6 +33,7 @@ const LANGUAGES: LanguageInfo[] = [
   { name: 'MATLAB',     extensions: ['m'],                 isTyped: false, hasClasses: false, paradigm: 'procedural'        },
   { name: 'Shell',      extensions: ['sh','bash','zsh'],   isTyped: false, hasClasses: false, paradigm: 'scripting'         },
   { name: 'PowerShell', extensions: ['ps1'],               isTyped: false, hasClasses: false, paradigm: 'scripting'         },
+  { name: 'SQL',        extensions: ['sql'],               isTyped: true,  hasClasses: false, paradigm: 'declarative'       },
 ];
 
 // Build reverse map: lowercase extension → LanguageInfo

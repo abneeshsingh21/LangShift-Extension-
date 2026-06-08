@@ -23,17 +23,24 @@ export class CustomRules {
   private static readonly RC_FILE = '.langshiftrc.json';
 
   static load(): LangShiftRules | null {
+    const { TeamSettings } = require('./TeamSettings');
+    const team = TeamSettings.load();
+
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders || workspaceFolders.length === 0) return null;
 
     for (const folder of workspaceFolders) {
-      const rcPath = path.join(folder.uri.fsPath, this.RC_FILE);
+      // Use team custom path if provided, otherwise default .langshiftrc.json
+      let rcPath = team?.customRulesPath 
+        ? path.resolve(folder.uri.fsPath, team.customRulesPath)
+        : path.join(folder.uri.fsPath, this.RC_FILE);
+
       if (fs.existsSync(rcPath)) {
         try {
           const raw = fs.readFileSync(rcPath, 'utf8');
           return JSON.parse(raw) as LangShiftRules;
         } catch (e: any) {
-          vscode.window.showWarningMessage(`LangShift: Invalid ${this.RC_FILE}: ${e.message}`);
+          vscode.window.showWarningMessage(`LangShift: Invalid rules file at ${rcPath}: ${e.message}`);
           return null;
         }
       }
