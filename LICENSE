@@ -1,21 +1,36 @@
-MIT License
+LANGSHIFT ENTERPRISE END USER LICENSE AGREEMENT (EULA)
 
-Copyright (c) 2025 LangShift
+Copyright (c) 2026 Abneesh Singh
+Contact: singhabneesh250@gmail.com
+All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. GRANT OF LICENSE
+Subject to the terms and conditions of this Agreement, Abneesh Singh ("Licensor") grants you ("Licensee", whether an individual or a legal entity) a non-exclusive, non-transferable, limited license to download, install, and use the LangShift software ("Software") solely for your internal business operations or personal use.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. RESTRICTIONS
+You shall not, and shall not permit any third party to:
+(a) Modify, adapt, alter, translate, or create derivative works of the Software;
+(b) Sublicense, lease, rent, loan, distribute, sell, or otherwise transfer the Software or any portion thereof to any third party;
+(c) Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the Software (except as and only to the extent any foregoing restriction is prohibited by applicable law);
+(d) Use the Software to provide services to third parties, including as a software-as-a-service (SaaS), time-sharing, or service bureau arrangement without a separate commercial agreement;
+(e) Remove, alter, or obscure any proprietary notices (including copyright and trademark notices) of the Licensor.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. INTELLECTUAL PROPERTY RIGHTS
+The Software, including its source code, design, features, and all intellectual property rights therein, are and shall remain the exclusive proprietary property of Abneesh Singh. This license does not convey to you an interest in or to the Software, but only a limited right of use in accordance with the terms of this Agreement.
+
+4. COMMERCIAL USE
+For broader enterprise deployment, redistribution rights, or integration into commercial products, a separate Commercial License must be obtained directly from the Licensor.
+
+5. DISCLAIMER OF WARRANTIES
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. THE LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, NOR DOES THE LICENSOR MAKE ANY WARRANTY AS TO THE ACCURACY OF AI-GENERATED CODE OR RESULTS OBTAINED FROM THE USE OF THE SOFTWARE.
+
+6. LIMITATION OF LIABILITY
+IN NO EVENT SHALL ABNEESH SINGH BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+7. TERMINATION
+This EULA is effective until terminated. Your rights under this License will terminate automatically without notice from the Licensor if you fail to comply with any term(s) of this License. Upon termination of the License, you shall cease all use of the Software and destroy all copies, full or partial, of the Software.
+
+8. CONTACT INFORMATION
+For enterprise licensing, commercial distribution, or support inquiries, please contact:
+Abneesh Singh
+Email: singhabneesh250@gmail.com
