@@ -4,6 +4,7 @@
   "description": "Convert code between any programming languages with AI. Supports Claude, GPT-4o, Gemini, OpenRouter, Ollama, LM Studio. Smart caching, PII scrubbing, fallback chains, confidence scoring.",
   "version": "2.0.0",
   "publisher": "langshift",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/abneeshsingh21/LangShift-Extension-.git"
