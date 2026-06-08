@@ -1,0 +1,426 @@
+{
+  "name": "langshift",
+  "displayName": "LangShift — AI Code Transpiler",
+  "description": "Convert code between any programming languages with AI. Supports Claude, GPT-4o, Gemini, OpenRouter, Ollama, LM Studio. Smart caching, PII scrubbing, fallback chains, confidence scoring.",
+  "version": "2.0.0",
+  "publisher": "langshift",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/langshift/langshift-vscode.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "transpiler",
+    "code conversion",
+    "AI",
+    "python",
+    "java",
+    "typescript",
+    "cpp",
+    "rust",
+    "go",
+    "gemini",
+    "claude",
+    "openai",
+    "ollama",
+    "local AI",
+    "code translator"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "langshift.convertFile",
+        "title": "LangShift: Convert This File",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "langshift.convertFolder",
+        "title": "LangShift: Convert All Files in Folder",
+        "icon": "$(folder)"
+      },
+      {
+        "command": "langshift.showHistory",
+        "title": "LangShift: Show Conversion History",
+        "icon": "$(history)"
+      },
+      {
+        "command": "langshift.openDashboard",
+        "title": "LangShift: Open Dashboard",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "langshift.configureApiKey",
+        "title": "LangShift: Configure API Key",
+        "icon": "$(key)"
+      },
+      {
+        "command": "langshift.undoLastConversion",
+        "title": "LangShift: Undo Last Conversion",
+        "icon": "$(discard)"
+      },
+      {
+        "command": "langshift.deleteApiKey",
+        "title": "LangShift: Delete Stored API Key",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "langshift.cancelConversion",
+        "title": "LangShift: Cancel Active Conversion",
+        "icon": "$(close)"
+      },
+      {
+        "command": "langshift.clearCache",
+        "title": "LangShift: Clear Conversion Cache",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "langshift.exportAuditLog",
+        "title": "LangShift: Export Audit Log (CSV)",
+        "icon": "$(export)"
+      },
+      {
+        "command": "langshift.validateConversion",
+        "title": "LangShift: Validate Last Conversion",
+        "icon": "$(check)"
+      },
+      {
+        "command": "langshift.resolveImports",
+        "title": "LangShift: Check Missing Imports",
+        "icon": "$(package)"
+      },
+      {
+        "command": "langshift.createTeamSettings",
+        "title": "LangShift: Create Team Settings Template",
+        "icon": "$(people)"
+      },
+      {
+        "command": "langshift.autoFixConversion",
+        "title": "LangShift: Auto-Fix with Compiler",
+        "icon": "$(wrench)"
+      },
+      {
+        "command": "langshift.clearDiagnostics",
+        "title": "LangShift: Clear Diagnostics",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "langshift.convertFile",
+          "when": "resourceExtname =~ /\\.(py|js|ts|java|cpp|cxx|cc|c|h|cs|go|rs|rb|php|swift|kt|kts|jsx|tsx|scala|dart|lua|pl|pm|hs|ex|exs|r|m|sh|bash|zsh|ps1)$/",
+          "group": "langshift@1"
+        },
+        {
+          "command": "langshift.convertFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "langshift@2"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "langshift.convertFile",
+          "when": "resourceExtname =~ /\\.(py|js|ts|java|cpp|cxx|cc|c|h|cs|go|rs|rb|php|swift|kt|kts|jsx|tsx|scala|dart|lua|pl|pm|hs|ex|exs|r|m|sh|bash|zsh|ps1)$/",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "LangShift",
+      "properties": {
+        "langshift.aiProvider": {
+          "type": "string",
+          "enum": [
+            "anthropic",
+            "openai",
+            "gemini",
+            "openrouter",
+            "ollama",
+            "lmstudio"
+          ],
+          "enumDescriptions": [
+            "Anthropic Claude (claude-sonnet-4-20250514, claude-haiku-3-5)",
+            "OpenAI (gpt-4o, gpt-4o-mini, o1-preview)",
+            "Google Gemini (gemini-2.0-flash, gemini-1.5-pro)",
+            "OpenRouter — access 200+ models with one API key",
+            "Ollama — local AI, no API key, no data leaves your machine",
+            "LM Studio — local AI, no API key, no data leaves your machine"
+          ],
+          "default": "anthropic",
+          "description": "AI provider for code conversion. Cloud providers need API keys; Ollama and LM Studio run locally."
+        },
+        "langshift.anthropicModel": {
+          "type": "string",
+          "enum": [
+            "claude-sonnet-4-20250514",
+            "claude-haiku-3-5"
+          ],
+          "default": "claude-sonnet-4-20250514",
+          "description": "Anthropic Claude model"
+        },
+        "langshift.openaiModel": {
+          "type": "string",
+          "enum": [
+            "gpt-4o",
+            "gpt-4o-mini",
+            "o1-preview",
+            "o1-mini"
+          ],
+          "default": "gpt-4o",
+          "description": "OpenAI model"
+        },
+        "langshift.geminiModel": {
+          "type": "string",
+          "enum": [
+            "gemini-2.0-flash",
+            "gemini-1.5-pro",
+            "gemini-1.5-flash"
+          ],
+          "default": "gemini-2.0-flash",
+          "description": "Google Gemini model"
+        },
+        "langshift.openrouterModel": {
+          "type": "string",
+          "default": "anthropic/claude-sonnet-4-20250514",
+          "description": "OpenRouter model string (e.g. anthropic/claude-sonnet-4-20250514, meta-llama/llama-3.3-70b-instruct)"
+        },
+        "langshift.ollamaModel": {
+          "type": "string",
+          "default": "deepseek-coder-v2",
+          "description": "Ollama model name. Run 'ollama list' to see available models."
+        },
+        "langshift.ollamaBaseUrl": {
+          "type": "string",
+          "default": "http://localhost:11434/v1",
+          "description": "Ollama API base URL"
+        },
+        "langshift.lmstudioModel": {
+          "type": "string",
+          "default": "loaded-model",
+          "description": "LM Studio model identifier (usually the model loaded in the UI)"
+        },
+        "langshift.lmstudioBaseUrl": {
+          "type": "string",
+          "default": "http://localhost:1234/v1",
+          "description": "LM Studio API base URL"
+        },
+        "langshift.autoConvertOnRename": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically trigger conversion when a file is renamed to a new extension"
+        },
+        "langshift.showConfirmationDialog": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show confirmation dialog before converting"
+        },
+        "langshift.showDiffBeforeApply": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show side-by-side diff view before applying conversion"
+        },
+        "langshift.autoConvertTests": {
+          "type": "boolean",
+          "default": true,
+          "description": "Detect and convert associated test files automatically"
+        },
+        "langshift.preserveComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "Preserve and convert code comments and docstrings"
+        },
+        "langshift.maxFileSizeKB": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum file size (KB) to attempt conversion"
+        },
+        "langshift.conversionTimeout": {
+          "type": "number",
+          "default": 90,
+          "description": "Timeout in seconds for AI request"
+        },
+        "langshift.rateLimitPerHour": {
+          "type": "number",
+          "default": 50,
+          "description": "Max conversions per hour"
+        },
+        "langshift.backupBeforeConvert": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create a backup before each conversion"
+        },
+        "langshift.batchDelayMs": {
+          "type": "number",
+          "default": 600,
+          "description": "Delay (ms) between batch conversion requests"
+        },
+        "langshift.twoPassConversion": {
+          "type": "boolean",
+          "default": false,
+          "description": "Run a second AI pass to review and fix the conversion (doubles API cost but improves accuracy)"
+        },
+        "langshift.confidenceScoring": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask AI to rate its conversion confidence (0-100) and display the score"
+        },
+        "langshift.multiFileContext": {
+          "type": "boolean",
+          "default": true,
+          "description": "Send imported/required files as context for more accurate conversions"
+        },
+        "langshift.maxContextFiles": {
+          "type": "number",
+          "default": 5,
+          "description": "Maximum number of context files to include"
+        },
+        "langshift.maxContextLinesPerFile": {
+          "type": "number",
+          "default": 200,
+          "description": "Maximum lines to include per context file"
+        },
+        "langshift.streaming": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable streaming responses (show code appearing in real-time)"
+        },
+        "langshift.modelRouting": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use LangShift's curated provider/model routing when the recommended provider is available. Disabled by default to avoid unexpected vendor changes."
+        },
+        "langshift.fallbackEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-retry with next provider if primary fails (429/5xx errors)"
+        },
+        "langshift.fallbackChain": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "openai",
+            "gemini"
+          ],
+          "description": "Ordered list of fallback providers to try when primary fails"
+        },
+        "langshift.piiScrubbing": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-redact emails, IPs, phone numbers, SSNs before sending code to AI. Critical for HIPAA/GDPR."
+        },
+        "langshift.auditLog": {
+          "type": "boolean",
+          "default": false,
+          "description": "Log every conversion to .langshift/audit.jsonl for compliance (no code content is logged)"
+        },
+        "langshift.proxyUrl": {
+          "type": "string",
+          "default": "",
+          "description": "HTTP/HTTPS proxy URL for corporate networks (e.g. http://proxy.corp.com:8080)"
+        },
+        "langshift.enableCache": {
+          "type": "boolean",
+          "default": true,
+          "description": "Cache conversion results. Repeat conversions of unchanged files are instant."
+        },
+        "langshift.telemetryEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Opt-in anonymous usage telemetry (no code is ever sent)"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "langshift-sidebar",
+          "title": "LangShift",
+          "icon": "$(sync)"
+        }
+      ]
+    },
+    "views": {
+      "langshift-sidebar": [
+        {
+          "type": "webview",
+          "id": "langshift.sidebar",
+          "name": "LangShift"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "langshift.convertFile",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "langshift.cancelConversion",
+        "key": "ctrl+shift+k",
+        "mac": "cmd+shift+k"
+      },
+      {
+        "command": "langshift.openDashboard",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d"
+      },
+      {
+        "command": "langshift.showHistory",
+        "key": "ctrl+shift+h",
+        "mac": "cmd+shift+h"
+      },
+      {
+        "command": "langshift.undoLastConversion",
+        "key": "ctrl+shift+z",
+        "mac": "cmd+shift+z",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./dist/test/runTest.js",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^2.22.0",
+    "eslint": "^8.54.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.3",
+    "@google/generative-ai": "^0.21.0",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6",
+    "openai": "^4.77.0"
+  },
+  "overrides": {
+    "serialize-javascript": "^7.0.5"
+  }
+}

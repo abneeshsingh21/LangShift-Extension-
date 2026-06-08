@@ -1,0 +1,17 @@
+.vscode/**
+.vscode-test/**
+src/**
+test/**
+.github/**
+.gitignore
+.eslintrc.json
+tsconfig.json
+dist/test/**
+**/*.map
+**/*.d.ts
+**/*.d.ts.map
+*.ts
+.langshift/**
+coverage/**
+*.tgz
+*.vsix

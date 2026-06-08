@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.vsix
+.vscode-test/
+.langshift-backups/
+*.js.map
+*.d.ts.map
+.env
+.env.local
+*.log
+coverage/
